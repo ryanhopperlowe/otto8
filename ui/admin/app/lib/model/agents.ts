@@ -8,6 +8,7 @@ export type AgentBase = {
     temperature?: number;
     cache?: boolean;
     refName: string;
+    refNameAssigned?: boolean;
     prompt: string;
     agents?: string[];
     workflows?: string[];
@@ -28,10 +29,15 @@ export type AgentOAuthStatus = {
 
 export type Agent = EntityMeta &
     AgentBase & {
-        slugAssigned: boolean;
-    } & {
         authStatus?: Record<string, AgentOAuthStatus>;
     };
 
 export type CreateAgent = AgentBase;
 export type UpdateAgent = AgentBase;
+
+export type AgentIcons = {
+    icon: string;
+    iconDark: string;
+    collapsed: string;
+    collapsedDark: string;
+};

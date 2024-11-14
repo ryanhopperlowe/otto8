@@ -1,29 +1,19 @@
 import { EyeOff } from "lucide-react";
 
-import { Agent } from "~/lib/model/agents";
-
-import { useAgent } from "~/components/agent/AgentContext";
 import { ConfirmationDialog } from "~/components/composed/ConfirmationDialog";
 import { Button } from "~/components/ui/button";
 
-type PublishProps = {
+type UnpublishProps = {
     className?: string;
-    onChange: (agent: Agent) => void;
+    onUnpublish: () => void;
 };
 
-export function Unpublish({ onChange }: PublishProps) {
-    const { agent } = useAgent();
-
+export function Unpublish({ onUnpublish }: UnpublishProps) {
     return (
         <ConfirmationDialog
             title="Unpublish Agent"
             description="Are you sure you want to unpublish this agent? This action will disrupt every user currently using this reference."
-            onConfirm={() => {
-                onChange({
-                    ...agent,
-                    refName: "",
-                });
-            }}
+            onConfirm={() => onUnpublish()}
             confirmProps={{
                 variant: "destructive",
                 children: "Unpublish",

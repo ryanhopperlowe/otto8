@@ -1,8 +1,6 @@
 import { Eye } from "lucide-react";
 import { useState } from "react";
 
-import { Agent } from "~/lib/model/agents";
-
 import {
     TypographyMuted,
     TypographyMutedAccent,
@@ -20,19 +18,18 @@ import { Input } from "~/components/ui/input";
 
 type PublishProps = {
     className?: string;
-    agent: Agent;
-    onChange: (agent: Agent) => void;
+    refName: string;
+    onPublish: (refName: string) => void;
 };
 
-export function Publish({ className, agent, onChange }: PublishProps) {
-    const [refName, setRefName] = useState(agent.refName);
+export function Publish({
+    className,
+    refName: _refName,
+    onPublish,
+}: PublishProps) {
+    const [refName, setRefName] = useState(_refName);
 
-    const handlePublish = () => {
-        onChange({
-            ...agent,
-            refName,
-        });
-    };
+    const handlePublish = () => onPublish(refName);
 
     return (
         <Dialog>
